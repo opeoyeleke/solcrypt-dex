@@ -243,7 +243,7 @@ function MarketSelector({
     <Select
       showSearch
       size={'large'}
-      style={{ width: 250, marginBottom: 5 }}
+      className="select-market"
       placeholder={placeholder || 'Select a market'}
       optionFilterProp="name"
       onSelect={onSetMarketAddress}
@@ -340,6 +340,8 @@ const RenderNormal = ({ onChangeOrderRef, onPrice, onSize, activePage }) => {
       style={{
         minHeight: '700px',
         flexWrap: 'nowrap',
+        width: '70%',
+        margin: '0px auto',
       }}
     >
       {activePage === 'trade' && (
@@ -369,7 +371,16 @@ const RenderNormal = ({ onChangeOrderRef, onPrice, onSize, activePage }) => {
       )}
 
       {activePage === 'market-info' && (
-        <Col flex="auto" style={{ height: '100%', display: 'flex' }}>
+        <Col
+          flex="auto"
+          style={{
+            minHeight: 400,
+            maxHeight: 750,
+            display: 'flex',
+            maxWidth: 600,
+            margin: '0px auto',
+          }}
+        >
           <TradesTable smallScreen={true} />
         </Col>
       )}
@@ -380,7 +391,12 @@ const RenderNormal = ({ onChangeOrderRef, onPrice, onSize, activePage }) => {
 const RenderSmall = ({ onChangeOrderRef, onPrice, onSize, activePage }) => {
   return (
     <>
-      <Row>
+      <Row
+        style={{
+          width: '75%',
+          margin: '0px auto',
+        }}
+      >
         {activePage === 'trade' && (
           <>
             <Col
@@ -410,10 +426,11 @@ const RenderSmall = ({ onChangeOrderRef, onPrice, onSize, activePage }) => {
           <Col
             flex="auto"
             style={{
-              minHeight: '550px',
+              minHeight: 400,
+              maxHeight: 620,
               display: 'flex',
               maxWidth: 600,
-              margin: 'auto',
+              margin: '0px auto',
             }}
           >
             <TradesTable smallScreen={true} />
@@ -436,7 +453,7 @@ const RenderSmaller = ({ onChangeOrderRef, onPrice, onSize, activePage }) => {
     <>
       {activePage === 'trade' && (
         <Row>
-          <Col xs={24} sm={12} style={{ height: '400px', display: 'flex' }}>
+          <Col xs={24} sm={12} style={{ minHeight: '400px', display: 'flex' }}>
             <Orderbook smallScreen={true} onPrice={onPrice} onSize={onSize} />
           </Col>
           <Col xs={24} sm={12} style={{ display: 'flex' }}>
