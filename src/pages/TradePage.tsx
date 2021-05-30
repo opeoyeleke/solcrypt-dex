@@ -38,13 +38,14 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function TradePage() {
+export default function TradePage({ activePage }) {
   const { marketAddress } = useParams();
   useEffect(() => {
     if (marketAddress) {
       localStorage.setItem('marketAddress', JSON.stringify(marketAddress));
     }
   }, [marketAddress]);
+
   const history = useHistory();
   function setMarketAddress(address) {
     history.push(getTradePageUrl(address));
@@ -55,12 +56,12 @@ export default function TradePage() {
       marketAddress={marketAddress}
       setMarketAddress={setMarketAddress}
     >
-      <TradePageInner />
+      <TradePageInner activePage={activePage} />
     </MarketProvider>
   );
 }
 
-function TradePageInner() {
+function TradePageInner({ activePage }) {
   const {
     market,
     marketName,
@@ -78,7 +79,7 @@ function TradePageInner() {
   });
 
   useEffect(() => {
-    document.title = marketName ? `${marketName} — Serum` : 'Serum';
+    document.title = marketName ? `${marketName} — SOLCRYPT` : 'SOLCRYPT';
   }, [marketName]);
 
   const changeOrderRef = useRef<
@@ -117,11 +118,11 @@ function TradePageInner() {
         />
       );
     } else if (width < 1000) {
-      return <RenderSmaller {...componentProps} />;
+      return <RenderSmaller {...componentProps} activePage={activePage} />;
     } else if (width < 1450) {
-      return <RenderSmall {...componentProps} />;
+      return <RenderSmall {...componentProps} activePage={activePage} />;
     } else {
-      return <RenderNormal {...componentProps} />;
+      return <RenderNormal {...componentProps} activePage={activePage} />;
     }
   })();
 
@@ -156,18 +157,14 @@ function TradePageInner() {
       <Wrapper>
         <Row
           align="middle"
-          style={{ paddingLeft: 5, paddingRight: 5 }}
+          style={{
+            paddingLeft: 5,
+            paddingRight: 5,
+            display: 'flex',
+            justifyContent: 'flex-end',
+          }}
           gutter={16}
         >
-          <Col>
-            <MarketSelector
-              markets={markets}
-              setHandleDeprecated={setHandleDeprecated}
-              placeholder={'Select market'}
-              customMarkets={customMarkets}
-              onDeleteCustomMarket={onDeleteCustomMarket}
-            />
-          </Col>
           {market ? (
             <Col>
               <Popover
@@ -186,6 +183,16 @@ function TradePageInner() {
               onClick={() => setAddMarketVisible(true)}
             />
           </Col>
+          <Col>
+            <MarketSelector
+              markets={markets}
+              setHandleDeprecated={setHandleDeprecated}
+              placeholder={'Select market'}
+              customMarkets={customMarkets}
+              onDeleteCustomMarket={onDeleteCustomMarket}
+            />
+          </Col>
+
           {deprecatedMarkets && deprecatedMarkets.length > 0 && (
             <React.Fragment>
               <Col>
@@ -236,7 +243,7 @@ function MarketSelector({
     <Select
       showSearch
       size={'large'}
-      style={{ width: 200 }}
+      style={{ width: 250, marginBottom: 5 }}
       placeholder={placeholder || 'Select a market'}
       optionFilterProp="name"
       onSelect={onSetMarketAddress}
@@ -327,96 +334,149 @@ const DeprecatedMarketsPage = ({ switchToLiveMarkets }) => {
   );
 };
 
-const RenderNormal = ({ onChangeOrderRef, onPrice, onSize }) => {
+const RenderNormal = ({ onChangeOrderRef, onPrice, onSize, activePage }) => {
   return (
     <Row
       style={{
-        minHeight: '900px',
+        minHeight: '700px',
         flexWrap: 'nowrap',
       }}
     >
-      <Col flex="auto" style={{ height: '100%', display: 'flex' }}>
-        <UserInfoTable />
-      </Col>
-      <Col flex={'360px'} style={{ height: '100%' }}>
-        <Orderbook smallScreen={false} onPrice={onPrice} onSize={onSize} />
-        <TradesTable smallScreen={false} />
-      </Col>
-      <Col
-        flex="400px"
-        style={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-      >
-        <TradeForm setChangeOrderRef={onChangeOrderRef} />
-        <StandaloneBalancesDisplay />
-      </Col>
+      {activePage === 'trade' && (
+        <>
+          <Col
+            flex="50%"
+            style={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+          >
+            <TradeForm setChangeOrderRef={onChangeOrderRef} />
+            <StandaloneBalancesDisplay />
+          </Col>
+          <Col flex="auto" style={{ height: '100%', display: 'flex' }}>
+            <Orderbook
+              smallScreen={true}
+              depth={13}
+              onPrice={onPrice}
+              onSize={onSize}
+            />
+          </Col>
+        </>
+      )}
+
+      {activePage === 'activity' && (
+        <Col flex="auto" style={{ height: '100%', display: 'flex' }}>
+          <UserInfoTable />
+        </Col>
+      )}
+
+      {activePage === 'market-info' && (
+        <Col flex="auto" style={{ height: '100%', display: 'flex' }}>
+          <TradesTable smallScreen={true} />
+        </Col>
+      )}
     </Row>
   );
 };
 
-const RenderSmall = ({ onChangeOrderRef, onPrice, onSize }) => {
+const RenderSmall = ({ onChangeOrderRef, onPrice, onSize, activePage }) => {
   return (
     <>
-      <Row
-        style={{
-          height: '900px',
-        }}
-      >
-        <Col flex="auto" style={{ height: '100%', display: 'flex' }}>
-          <Orderbook
-            smallScreen={true}
-            depth={13}
-            onPrice={onPrice}
-            onSize={onSize}
-          />
-        </Col>
-        <Col flex="auto" style={{ height: '100%', display: 'flex' }}>
-          <TradesTable smallScreen={true} />
-        </Col>
-        <Col
-          flex="400px"
-          style={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-        >
-          <TradeForm setChangeOrderRef={onChangeOrderRef} />
-          <StandaloneBalancesDisplay />
-        </Col>
-      </Row>
       <Row>
-        <Col flex="auto">
-          <UserInfoTable />
-        </Col>
+        {activePage === 'trade' && (
+          <>
+            <Col
+              flex="50%"
+              style={{
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
+              <TradeForm setChangeOrderRef={onChangeOrderRef} />
+              <StandaloneBalancesDisplay />
+            </Col>
+
+            <Col flex="auto" style={{ minHeight: '100%', display: 'flex' }}>
+              <Orderbook
+                smallScreen={true}
+                depth={13}
+                onPrice={onPrice}
+                onSize={onSize}
+              />
+            </Col>
+          </>
+        )}
+
+        {activePage === 'market-info' && (
+          <Col
+            flex="auto"
+            style={{
+              minHeight: '550px',
+              display: 'flex',
+              maxWidth: 600,
+              margin: 'auto',
+            }}
+          >
+            <TradesTable smallScreen={true} />
+          </Col>
+        )}
       </Row>
+      {activePage === 'activity' && (
+        <Row style={{ height: '100%' }}>
+          <Col flex="auto">
+            <UserInfoTable />
+          </Col>
+        </Row>
+      )}
     </>
   );
 };
 
-const RenderSmaller = ({ onChangeOrderRef, onPrice, onSize }) => {
+const RenderSmaller = ({ onChangeOrderRef, onPrice, onSize, activePage }) => {
   return (
     <>
-      <Row>
-        <Col xs={24} sm={12} style={{ height: '100%', display: 'flex' }}>
-          <TradeForm style={{ flex: 1 }} setChangeOrderRef={onChangeOrderRef} />
-        </Col>
-        <Col xs={24} sm={12}>
-          <StandaloneBalancesDisplay />
-        </Col>
-      </Row>
-      <Row
-        style={{
-          height: '500px',
-        }}
-      >
-        <Col xs={24} sm={12} style={{ height: '100%', display: 'flex' }}>
-          <Orderbook smallScreen={true} onPrice={onPrice} onSize={onSize} />
-        </Col>
-        <Col xs={24} sm={12} style={{ height: '100%', display: 'flex' }}>
-          <TradesTable smallScreen={true} />
-        </Col>
-      </Row>
-      <Row>
-        <Col flex="auto">
-          <UserInfoTable />
-        </Col>
-      </Row>
+      {activePage === 'trade' && (
+        <Row>
+          <Col xs={24} sm={12} style={{ height: '400px', display: 'flex' }}>
+            <Orderbook smallScreen={true} onPrice={onPrice} onSize={onSize} />
+          </Col>
+          <Col xs={24} sm={12} style={{ display: 'flex' }}>
+            <TradeForm
+              style={{ flex: 1 }}
+              setChangeOrderRef={onChangeOrderRef}
+            />
+          </Col>
+          <Col xs={24} sm={12}>
+            <StandaloneBalancesDisplay />
+          </Col>
+        </Row>
+      )}
+
+      {activePage === 'market-info' && (
+        <Row
+          style={{
+            height: '500px',
+          }}
+        >
+          <Col
+            xs={24}
+            style={{
+              height: '100%',
+              display: 'flex',
+              maxWidth: 600,
+              margin: 'auto',
+            }}
+          >
+            <TradesTable smallScreen={true} />
+          </Col>
+        </Row>
+      )}
+      {activePage === 'activity' && (
+        <Row style={{ height: '100%' }}>
+          <Col flex="auto">
+            <UserInfoTable />
+          </Col>
+        </Row>
+      )}
     </>
   );
 };
