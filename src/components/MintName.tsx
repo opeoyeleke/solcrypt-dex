@@ -29,7 +29,7 @@ export function MintName({
           {' '}
           <Popover
             content={<LinkAddress address={mintAddress} />}
-            placement="bottomRight"
+            placement="bottom"
             title="Token mint"
             trigger="hover"
           >

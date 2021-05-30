@@ -1,5 +1,5 @@
-import {Button, Col, Divider, Popover, Row} from 'antd';
-import React, {useState} from 'react';
+import { Button, Col, Divider, Popover, Row } from 'antd';
+import React, { useState } from 'react';
 import FloatingElement from './layout/FloatingElement';
 import styled from 'styled-components';
 import {
@@ -11,18 +11,18 @@ import {
   useTokenAccounts,
 } from '../utils/markets';
 import DepositDialog from './DepositDialog';
-import {useWallet} from '../utils/wallet';
+import { useWallet } from '../utils/wallet';
 import Link from './Link';
-import {settleFunds} from '../utils/send';
-import {useSendConnection} from '../utils/connection';
-import {notify} from '../utils/notifications';
-import {Balances} from '../utils/types';
+import { settleFunds } from '../utils/send';
+import { useSendConnection } from '../utils/connection';
+import { notify } from '../utils/notifications';
+import { Balances } from '../utils/types';
 import StandaloneTokenAccountsSelect from './StandaloneTokenAccountSelect';
 import LinkAddress from './LinkAddress';
-import {InfoCircleOutlined} from '@ant-design/icons';
-import {useInterval} from "../utils/useInterval";
-import {useLocalStorageState} from "../utils/utils";
-import { AUTO_SETTLE_DISABLED_OVERRIDE } from "../utils/preferences";
+import { InfoCircleOutlined } from '@ant-design/icons';
+import { useInterval } from '../utils/useInterval';
+import { useLocalStorageState } from '../utils/utils';
+import { AUTO_SETTLE_DISABLED_OVERRIDE } from '../utils/preferences';
 
 const RowBox = styled(Row)`
   padding-bottom: 20px;
@@ -53,10 +53,7 @@ export default function StandaloneBalancesDisplay() {
     balances && balances.find((b) => b.coin === baseCurrency);
   const quoteCurrencyBalances =
     balances && balances.find((b) => b.coin === quoteCurrency);
-  const [autoSettleEnabled] = useLocalStorageState(
-    'autoSettleEnabled',
-    true,
-  );
+  const [autoSettleEnabled] = useLocalStorageState('autoSettleEnabled', true);
   const [lastSettledAt, setLastSettledAt] = useState<number>(0);
 
   async function onSettleFunds() {
@@ -122,10 +119,21 @@ export default function StandaloneBalancesDisplay() {
 
   useInterval(() => {
     const autoSettle = async () => {
-      if (AUTO_SETTLE_DISABLED_OVERRIDE || !wallet || !market || !openOrdersAccount || !baseCurrencyAccount || !quoteCurrencyAccount || !autoSettleEnabled) {
+      if (
+        AUTO_SETTLE_DISABLED_OVERRIDE ||
+        !wallet ||
+        !market ||
+        !openOrdersAccount ||
+        !baseCurrencyAccount ||
+        !quoteCurrencyAccount ||
+        !autoSettleEnabled
+      ) {
         return;
       }
-      if (!baseCurrencyBalances?.unsettled && !quoteCurrencyBalances?.unsettled) {
+      if (
+        !baseCurrencyBalances?.unsettled &&
+        !quoteCurrencyBalances?.unsettled
+      ) {
         return;
       }
       if (Date.now() - lastSettledAt < 15000) {
@@ -148,12 +156,7 @@ export default function StandaloneBalancesDisplay() {
       }
       console.log('Finished settling funds.');
     };
-    (
-      connected &&
-      wallet?.autoApprove &&
-      autoSettleEnabled &&
-      autoSettle()
-    );
+    connected && wallet?.autoApprove && autoSettleEnabled && autoSettle();
   }, 1000);
 
   const formattedBalances: [
@@ -186,7 +189,7 @@ export default function StandaloneBalancesDisplay() {
               {mint && (
                 <Popover
                   content={<LinkAddress address={mint} />}
-                  placement="bottomRight"
+                  placement="bottom"
                   title="Token mint"
                   trigger="hover"
                 >
