@@ -5,7 +5,7 @@ import { LinkOutlined } from '@ant-design/icons';
 export default function LinkAddress({
   title,
   address,
-  shorten = false,
+  shorten = true,
 }: {
   title?: undefined | any;
   address: string;

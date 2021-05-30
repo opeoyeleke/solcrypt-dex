@@ -169,7 +169,7 @@ function TradePageInner({ activePage }) {
             <Col>
               <Popover
                 content={<LinkAddress address={market.publicKey.toBase58()} />}
-                placement="bottomRight"
+                placement="bottom"
                 title="Market address"
                 trigger="click"
               >
