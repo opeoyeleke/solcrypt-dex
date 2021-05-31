@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Layout, Menu, Drawer } from 'antd';
 import { useHistory, useLocation } from 'react-router-dom';
 import { getTradePageUrl } from '../utils/markets';
-import { useWallet } from '../utils/wallet';
+// import { useWallet } from '../utils/wallet';
 
 import {
   SwapOutlined,
@@ -32,7 +32,7 @@ export default function Sidebar({
 }) {
   const history = useHistory();
   const location = useLocation();
-  const { connected } = useWallet();
+  // const { connected } = useWallet();
   const [dimensions, setDimensions] = useState({
     height: window.innerHeight,
     width: window.innerWidth,
@@ -89,19 +89,17 @@ export default function Sidebar({
             >
               Market Info
             </Menu.Item>
-            {connected && (
-              <Menu.Item
-                key="/activity"
-                icon={<UserOutlined />}
-                onClick={() => {
-                  history.push(tradePageUrl);
-                  setActivePage('activity');
-                  setMenuCollapsed(true);
-                }}
-              >
-                Your Activity
-              </Menu.Item>
-            )}
+            <Menu.Item
+              key="/activity"
+              icon={<UserOutlined />}
+              onClick={() => {
+                history.push(tradePageUrl);
+                setActivePage('activity');
+                setMenuCollapsed(true);
+              }}
+            >
+              Your Activity
+            </Menu.Item>
             <Menu.Item
               key="/list-new-market"
               icon={<PlusOutlined />}
@@ -244,18 +242,16 @@ export default function Sidebar({
             Market Info
           </Menu.Item>
 
-          {connected && (
-            <Menu.Item
-              key="/activities"
-              icon={<UserOutlined />}
-              onClick={() => {
-                history.push(tradePageUrl);
-                setActivePage('activity');
-              }}
-            >
-              Your Activity
-            </Menu.Item>
-          )}
+          <Menu.Item
+            key="/activities"
+            icon={<UserOutlined />}
+            onClick={() => {
+              history.push(tradePageUrl);
+              setActivePage('activity');
+            }}
+          >
+            Your Activity
+          </Menu.Item>
 
           <Menu.Item
             key="/list-new-market"

@@ -84,7 +84,7 @@ export default function FeesTable() {
         </Col>
       </Row>
       <Row style={{ marginTop: 8 }}>
-        <Col>
+        <Col span={24}>
           <Typography>
             Holding SRM or MSRM makes you eligible for fee discounts:
           </Typography>

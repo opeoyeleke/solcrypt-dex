@@ -189,6 +189,7 @@ export function WalletProvider({ children }) {
               size="large"
               type={providerUrl === provider.url ? 'primary' : 'ghost'}
               onClick={onClick}
+              key={Math.random()}
               icon={
                 <img
                   alt={`${provider.name}`}

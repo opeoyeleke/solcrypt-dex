@@ -44,6 +44,18 @@
   .ant-menu-vertical .ant-menu-item {
     margin-top: unset;
   }
+
+  // .ant-table-cell {
+  //   .example::-webkit-scrollbar {
+  //     display: none;
+  //   }
+
+  //   /* Hide scrollbar for IE, Edge and Firefox */
+  //   .example {
+  //     -ms-overflow-style: none; /* IE and Edge */
+  //     scrollbar-width: none; /* Firefox */
+  //   }
+  // }
 }
 
 .ant-layout-sider,
@@ -149,10 +161,12 @@ ant-menu-dark .ant-menu-sub,
   background-color: unset;
 }
 
-a {
+a,
+a.ant-typography,
+.ant-typography a {
   color: #c06da2;
   &:hover {
-    color: white;
+    color: #e9afd3;
   }
 }
 
@@ -171,4 +185,52 @@ a {
 .ant-input-affix-wrapper:focus {
   border-color: #c06da2;
   box-shadow: unset;
+}
+.ant-table {
+  background: #15151b;
+}
+
+.ant-table-content {
+  background-color: #2a2a3a;
+}
+
+.ant-table-tbody > tr > td {
+  border-bottom: 8px solid #2a2a3a !important;
+}
+
+.ant-table-thead > tr > th {
+  background: #15151b !important;
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn,
+.ant-table-column-sorter-up.active,
+.ant-table-column-sorter-down.active {
+  color: #c06da2;
+}
+
+.ant-tabs-ink-bar {
+  background: #c06da2;
+}
+
+.ant-tabs-tab:hover {
+  color: #e9afd3;
+}
+
+.ant-tabs-tab-btn:active {
+  color: #c06da2;
+  opacity: 0.8;
+}
+
+.ant-table-placeholder:hover {
+  background: unset;
+}
+
+.ant-table-ping-right:not(.ant-table-has-fix-right) .ant-table-container::after,
+.ant-table-ping-right:not(.ant-table-has-fix-right)
+  .ant-table-container::after {
+  box-shadow: unset;
+}
+
+.ant-table-expanded-row-fixed {
+  background-color: #2a2a3a;
 }
