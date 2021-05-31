@@ -17,7 +17,11 @@ export default function WalletConnect() {
   );
 
   return (
-    <Dropdown.Button onClick={connected ? disconnect : connect} overlay={menu}>
+    <Dropdown.Button
+      onClick={connected ? disconnect : connect}
+      overlay={menu}
+      style={{ borderRadius: '15px 0px 0px 0px' }}
+    >
       {connected ? 'Disconnect' : 'Connect'}
     </Dropdown.Button>
   );

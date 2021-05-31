@@ -221,7 +221,6 @@ export default function Sidebar({
         collapsed={menuCollapsed}
         className={menuCollapsed ? 'collapsed' : ''}
       >
-        <div className="logo" />
         <Menu theme="dark" mode="inline" defaultSelectedKeys={['/trade']}>
           <Menu.Item
             key="/trade"

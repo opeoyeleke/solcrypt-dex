@@ -34,8 +34,8 @@ const Tip = styled.p`
 `;
 
 const ActionButton = styled(Button)`
-  color: #2abdd2;
-  background-color: #212734;
+  color: white;
+  background-color: #c35d9e24;
   border-width: 0px;
 `;
 

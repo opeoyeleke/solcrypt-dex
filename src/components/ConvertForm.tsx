@@ -360,8 +360,8 @@ function ConvertFormSubmit({
         <Col>
           <Input
             style={{ minWidth: 300 }}
-            addonBefore={`Size (${fromToken})`}
-            placeholder="Size"
+            addonBefore={`Amount (${fromToken})`}
+            placeholder="Amount"
             value={size === null ? undefined : size}
             type="number"
             onChange={(e) => setSize(parseFloat(e.target.value) || undefined)}

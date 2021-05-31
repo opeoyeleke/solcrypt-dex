@@ -173,13 +173,13 @@ function TradePageInner({ activePage }) {
                 title="Market address"
                 trigger="click"
               >
-                <InfoCircleOutlined style={{ color: '#2abdd2' }} />
+                <InfoCircleOutlined style={{ color: '#c06da2' }} />
               </Popover>
             </Col>
           ) : null}
           <Col>
             <PlusCircleOutlined
-              style={{ color: '#2abdd2' }}
+              style={{ color: '#c06da2' }}
               onClick={() => setAddMarketVisible(true)}
             />
           </Col>
@@ -309,7 +309,7 @@ function MarketSelector({
               style={{
                 padding: '10px',
                 // @ts-ignore
-                backgroundColor: i % 2 === 0 ? 'rgb(39, 44, 61)' : null,
+                backgroundColor: i % 2 === 0 ? '#2A2A3A' : null,
               }}
             >
               {name} {deprecated ? ' (Deprecated)' : null}
@@ -394,6 +394,7 @@ const RenderSmall = ({ onChangeOrderRef, onPrice, onSize, activePage }) => {
       <Row
         style={{
           width: '75%',
+          minWidth: 800,
           margin: '0px auto',
         }}
       >

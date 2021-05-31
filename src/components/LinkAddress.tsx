@@ -20,7 +20,7 @@ export default function LinkAddress({
         href={'https://explorer.solana.com/address/' + address}
         target="_blank"
         rel="noopener noreferrer"
-        style={{ cursor: 'pointer' }}
+        style={{ cursor: 'pointer', color: '#e78dc6' }}
       >
         {shorten ? `${address.slice(0, 4)}...${address.slice(-4)}` : address}
       </Button>

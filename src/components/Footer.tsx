@@ -1,25 +1,13 @@
 import React from 'react';
-import { Layout, Row, Col, Grid } from 'antd';
+import { Layout, Row, Col } from 'antd';
 import Link from './Link';
-import { helpUrls } from './HelpUrls';
-const { Footer } = Layout;
-const { useBreakpoint } = Grid;
+import Discord from './../../src/assets/icons8-discord.svg';
+import Medium from './../../src/assets/icons8-medium-new.svg';
+import Twitter from './../../src/assets/icons8-twitter.svg';
 
-const footerElements = [
-  {
-    description: 'Serum Developer Resources',
-    link: helpUrls.developerResources,
-  },
-  { description: 'Discord', link: helpUrls.discord },
-  { description: 'Telegram', link: helpUrls.telegram },
-  { description: 'GitHub', link: helpUrls.github },
-  { description: 'Project Serum', link: helpUrls.projectSerum },
-  { description: 'Solana Network', link: helpUrls.solanaBeach },
-];
+const { Footer } = Layout;
 
 export const CustomFooter = () => {
-  const smallScreen = !useBreakpoint().lg;
-
   return (
     <Footer
       style={{
@@ -28,22 +16,26 @@ export const CustomFooter = () => {
         paddingTop: 10,
       }}
     >
-      <Row align="middle" gutter={[16, 4]}>
-        {!smallScreen && (
-          <>
-            <Col flex="auto" />
-            {footerElements.map((elem, index) => {
-              return (
-                <Col key={index + ''}>
-                  <Link external to={elem.link}>
-                    {elem.description}
-                  </Link>
-                </Col>
-              );
-            })}
-          </>
-        )}
-        <Col flex="auto">{/*  <DexProgramSelector />*/}</Col>
+      <Row className="footer-items" align="middle" gutter={[16, 4]}>
+        <div style={{ display: 'flex', margin: '0px auto' }}>
+          <Col>
+            <Link external to="https://discord.gg">
+              <img src={Discord} alt="" />
+            </Link>
+          </Col>
+
+          <Col>
+            <Link external to="https://twitter.com">
+              <img src={Twitter} alt="" />
+            </Link>
+          </Col>
+
+          <Col>
+            <Link external to="https://medium.com">
+              <img src={Medium} alt="" />
+            </Link>
+          </Col>
+        </div>
       </Row>
     </Footer>
   );

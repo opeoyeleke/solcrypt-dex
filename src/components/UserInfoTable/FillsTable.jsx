@@ -28,7 +28,7 @@ export default function FillsTable() {
       ),
     },
     {
-      title: `Size`,
+      title: `Amount`,
       dataIndex: 'size',
       key: 'size',
     },
