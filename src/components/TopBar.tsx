@@ -27,7 +27,7 @@ import WalletConnect from './WalletConnect';
 import { getTradePageUrl } from '../utils/markets';
 
 const Wrapper = styled.div`
-  background-color: #1f1f29;
+  background-color: #2c2e3f;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -50,11 +50,13 @@ const ToggleMenuLarge = styled.div`
   cursor: pointer;
   margin-right: 27px;
   margin-left: 12px;
+  padding-top: 3px;
 `;
 
 const ToggleMenuSmall = styled.div`
   cursor: pointer;
   margin-left: 27px;
+  padding-top: 3px;
 `;
 
 export default function TopBar({ menuCollapsed, setMenuCollapsed }) {

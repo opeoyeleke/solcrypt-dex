@@ -309,7 +309,7 @@ function MarketSelector({
               style={{
                 padding: '10px',
                 // @ts-ignore
-                backgroundColor: i % 2 === 0 ? '#2A2A3A' : null,
+                backgroundColor: i % 2 === 0 ? '#2C2E3F' : null,
               }}
             >
               {name} {deprecated ? ' (Deprecated)' : null}
