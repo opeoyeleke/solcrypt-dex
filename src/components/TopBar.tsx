@@ -38,7 +38,7 @@ const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
   color: white;
-  font-weight: bold;
+  font-weight: 600;
   cursor: pointer;
   img {
     height: 30px;
@@ -50,13 +50,11 @@ const ToggleMenuLarge = styled.div`
   cursor: pointer;
   margin-right: 27px;
   margin-left: 12px;
-  padding-top: 3px;
 `;
 
 const ToggleMenuSmall = styled.div`
   cursor: pointer;
   margin-left: 27px;
-  padding-top: 3px;
 `;
 
 export default function TopBar({ menuCollapsed, setMenuCollapsed }) {
