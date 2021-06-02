@@ -111,12 +111,30 @@ export default function Orderbook({ smallScreen, depth = 7, onPrice, onSize }) {
         smallScreen ? { flex: 1 } : { height: '500px', overflow: 'hidden' }
       }
     >
-      <Title>Orderbook</Title>
+      <Title style={{ fontWeight: 600, fontSize: 18, color: '#ffffff8f' }}>
+        Order Book
+      </Title>
       <SizeTitle>
-        <Col span={12} style={{ textAlign: 'left' }}>
+        <Col
+          span={12}
+          style={{
+            textAlign: 'left',
+            fontWeight: 500,
+            fontSize: 15,
+            color: '#ffffff3d',
+          }}
+        >
           Size ({baseCurrency})
         </Col>
-        <Col span={12} style={{ textAlign: 'right' }}>
+        <Col
+          span={12}
+          style={{
+            textAlign: 'right',
+            fontWeight: 500,
+            fontSize: 15,
+            color: '#ffffff3d',
+          }}
+        >
           Price ({quoteCurrency})
         </Col>
       </SizeTitle>

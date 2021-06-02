@@ -35,7 +35,7 @@ const Tip = styled.p`
 
 const ActionButton = styled(Button)`
   color: white;
-  background-color: #c35d9e24;
+  background-color: #0aa7e83d;
   border-width: 0px;
 `;
 
@@ -193,7 +193,7 @@ export default function StandaloneBalancesDisplay() {
                   title="Token mint"
                   trigger="hover"
                 >
-                  <InfoCircleOutlined style={{ color: '#2abdd2' }} />
+                  <InfoCircleOutlined />
                 </Popover>
               )}
             </Divider>
@@ -213,7 +213,11 @@ export default function StandaloneBalancesDisplay() {
               justify="space-between"
               style={{ paddingBottom: 12 }}
             >
-              <Col>Wallet balance:</Col>
+              <Col
+                style={{ fontWeight: 500, fontSize: 15, color: '#ffffff8f' }}
+              >
+                Wallet Balance:
+              </Col>
               <Col>{balances && balances.wallet}</Col>
             </RowBox>
             <RowBox
@@ -221,7 +225,11 @@ export default function StandaloneBalancesDisplay() {
               justify="space-between"
               style={{ paddingBottom: 12 }}
             >
-              <Col>Unsettled balance:</Col>
+              <Col
+                style={{ fontWeight: 500, fontSize: 15, color: '#ffffff8f' }}
+              >
+                Unsettled Balance:
+              </Col>
               <Col>{balances && balances.unsettled}</Col>
             </RowBox>
             <RowBox align="middle" justify="space-around">

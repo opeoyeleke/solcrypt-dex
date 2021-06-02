@@ -1,5 +1,5 @@
-import {Button, Input, Radio, Slider, Switch} from 'antd';
-import React, {useEffect, useState} from 'react';
+import { Button, Input, Radio, Slider, Switch } from 'antd';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import {
   useFeeDiscountKeys,
@@ -12,14 +12,18 @@ import {
   useSelectedQuoteCurrencyAccount,
   useSelectedQuoteCurrencyBalances,
 } from '../utils/markets';
-import {useWallet} from '../utils/wallet';
-import {notify} from '../utils/notifications';
-import {floorToDecimal, getDecimalCount, roundToDecimal,} from '../utils/utils';
-import {useSendConnection} from '../utils/connection';
+import { useWallet } from '../utils/wallet';
+import { notify } from '../utils/notifications';
+import {
+  floorToDecimal,
+  getDecimalCount,
+  roundToDecimal,
+} from '../utils/utils';
+import { useSendConnection } from '../utils/connection';
 import FloatingElement from './layout/FloatingElement';
-import {getUnixTs, placeOrder} from '../utils/send';
-import {SwitchChangeEventHandler} from 'antd/es/switch';
-import {refreshCache} from '../utils/fetch-loop';
+import { getUnixTs, placeOrder } from '../utils/send';
+import { SwitchChangeEventHandler } from 'antd/es/switch';
+import { refreshCache } from '../utils/fetch-loop';
 import tuple from 'immutable-tuple';
 
 const SellButton = styled(Button)`
@@ -282,7 +286,7 @@ export default function TradeForm({
           value={side}
           buttonStyle="solid"
           style={{
-            marginBottom: 8,
+            marginBottom: 25,
             width: '100%',
           }}
         >
@@ -310,7 +314,8 @@ export default function TradeForm({
           </Radio.Button>
         </Radio.Group>
         <Input
-          style={{ textAlign: 'right', paddingBottom: 8 }}
+          className="custom-group"
+          style={{ textAlign: 'right', paddingBottom: 15, borderRadius: 8 }}
           addonBefore={<div style={{ width: '30px' }}>Price</div>}
           suffix={
             <span style={{ fontSize: 10, opacity: 0.5 }}>{quoteCurrency}</span>
@@ -322,7 +327,11 @@ export default function TradeForm({
         />
         <Input.Group compact style={{ paddingBottom: 8 }}>
           <Input
-            style={{ width: 'calc(50% + 30px)', textAlign: 'right' }}
+            style={{
+              width: 'calc(50% + 30px)',
+              textAlign: 'right',
+              borderRadius: '0px !importamt',
+            }}
             addonBefore={<div style={{ width: '30px' }}>Size</div>}
             suffix={
               <span style={{ fontSize: 10, opacity: 0.5 }}>{baseCurrency}</span>

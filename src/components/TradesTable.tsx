@@ -30,13 +30,36 @@ export default function PublicTrades({ smallScreen }) {
             }
       }
     >
-      <Title>Recent Market trades</Title>
+      <Title style={{ fontWeight: 600, fontSize: 18, color: '#ffffff8f' }}>
+        Recent Trades
+      </Title>
       <SizeTitle>
-        <Col span={8}>Price ({quoteCurrency}) </Col>
-        <Col span={8} style={{ textAlign: 'right' }}>
+        <Col
+          span={8}
+          style={{ fontWeight: 500, fontSize: 14, color: '#ffffff3d' }}
+        >
+          Price ({quoteCurrency}){' '}
+        </Col>
+        <Col
+          span={8}
+          style={{
+            textAlign: 'right',
+            fontWeight: 500,
+            fontSize: 14,
+            color: '#ffffff3d',
+          }}
+        >
           Size ({baseCurrency})
         </Col>
-        <Col span={8} style={{ textAlign: 'right' }}>
+        <Col
+          span={8}
+          style={{
+            textAlign: 'right',
+            fontWeight: 500,
+            fontSize: 14,
+            color: '#ffffff3d',
+          }}
+        >
           Time
         </Col>
       </SizeTitle>

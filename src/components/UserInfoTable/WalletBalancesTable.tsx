@@ -109,7 +109,7 @@ export default function WalletBalancesTable({
       width: '20%',
     },
     {
-      title: 'Unsettled balances',
+      title: 'Unsettled Balances',
       dataIndex: 'openOrdersFree',
       key: 'openOrdersFree',
       width: '20%',
